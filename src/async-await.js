@@ -130,39 +130,56 @@ const URL = "https://api.spacexdata.com/v4/launches";
 //     try {
 //       const response = await fetch(URL);
 //       const jsonResponse = await response.json();
-  
+
 //       console.log("Parsed response: ", jsonResponse);
 //     } catch (err) {
 //       // Handle error or a rejected Promise
 //       console.log("Something went wrong!", error);
 //     }
 //   }
-  
+
 //   displayMissionPatches();
-  
+
 
 //Displaying the patch Images
-async function displayMissionPatches(limit = 0) {
-    try {
-      const response = await fetch("https://api.spacexdata.com/v4/launches");
-      const jsonResponse = await response.json();
-  
-      console.log(jsonResponse);
-      const launchesToDisplay = jsonResponse.slice(0, limit);
-  
-      launchesToDisplay.forEach((launchObj) => {
-        const patchImage = launchObj.links.patch.small;
-        const imgElement = document.createElement("img");
-  
-        imgElement.setAttribute("src", patchImage);
-        imgElement.setAttribute("width", 200);
-        document.body.appendChild(imgElement);
-      });
-    } catch (error) {
-      // Handle error or a rejected Promise
-      console.log("Something went wrong!", error);
-    }
-  }
-  
-  displayMissionPatches(10);
-  
+// async function displayMissionPatches(limit = 0) {
+//     try {
+//       const response = await fetch("https://api.spacexdata.com/v4/launches");
+//       const jsonResponse = await response.json();
+
+//       console.log(jsonResponse);
+//       const launchesToDisplay = jsonResponse.slice(0, limit);
+
+//       launchesToDisplay.forEach((launchObj) => {
+//         const patchImage = launchObj.links.patch.small;
+//         const imgElement = document.createElement("img");
+
+//         imgElement.setAttribute("src", patchImage);
+//         imgElement.setAttribute("width", 200);
+//         document.body.appendChild(imgElement);
+//       });
+//     } catch (error) {
+//       // Handle error or a rejected Promise
+//       console.log("Something went wrong!", error);
+//     }
+//   }
+
+//   displayMissionPatches(10);
+
+
+const psuedoAsync = () => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve('done');
+        }, 1000);
+    });
+}
+
+const foo = async () => {
+    const res = await psuedoAsync();
+    console.log(res);
+}
+
+console.log('Before Foo Call');
+foo();
+console.log('After Foo Call');
